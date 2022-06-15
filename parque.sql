@@ -1,4 +1,4 @@
--- crear tabla clientes
+-- Crear Tabla Clientes
 CREATE TABLE Clientes( 
     rut_cliente         NUMBER(11) NOT NULL, 
     dv                  CHAR(1) NOT NULL, 
@@ -12,33 +12,51 @@ CREATE TABLE Clientes(
     comuna_id           NUMBER NOT NULL 
 );
 
---Añadir PK a la tabla cliente
+--Añadir la PK a la Tabla Clientes
 ALTER TABLE Clientes ADD CONSTRAINT cliente_PK PRIMARY KEY (rut_cliente);
 
--- Creo la tabla comuna
+--Creo Tabla Comunas
 CREATE TABLE Comunas( 
     id_comuna NUMBER NOT NULL, 
     nombre VARCHAR2(250) NOT NULL, 
     provincia_id NUMBER NOT NULL 
 );
 
--- Añado la PK a la tabla comuna
+-- Añadir la PK a la tabla Comunas
 ALTER TABLE Comunas ADD CONSTRAINT comuna_PK PRIMARY KEY (id_comuna);
 
--- Añadir la clave Clave foranea FK
+-- Añadir la Clave Foranea o FK a la tabla Clientes
 ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id) 
     REFERENCES Comunas (id_comuna);
-
--- Ingresar datos a la tabla Comunas
-INSERT INTO Comunas VALUES (1,'Arica', 1)
-INSERT INTO Comunas VALUES (2,'Camarones', 1)
-INSERT INTO Comunas VALUES (3,'General Lagos', 1)
-INSERT INTO Comunas VALUES (4,'Putre', 1)
-
-SELECT * FROM Comunas;
-SELECT * FROM Clientes;
-
+    
+-- Ingresar datos en la Comunas
+INSERT INTO Comunas VALUES (1, 'Arica', 1);
+INSERT INTO Comunas VALUES (2, 'Los Muermos', 1);
+    
 -- Ingresar datos a la tabla Clientes
-INSERT INTO Clientes VALUES (123,'K','Alan','','Frito','','Avenida Siempre viva #117' ,555,'alan@brito.cl',1);
-INSERT INTO Clientes VALUES (132,'K','Pedro','','Frito','','Avenida Siempre viva #117' ,666,'pedro@brito.cl',1);
-INSERT INTO Clientes VALUES (123,'K','Maria','','Frito','','Avenida Siempre viva #117' ,777,'maria@brito.cl',1);
+INSERT INTO Clientes VALUES (123,'K','Alan','','Brito','','Su casa #123',5555,'alan@frito.cl',1);
+INSERT INTO Clientes VALUES (456,'K','Pedro','','Brito','','Su casa #123',6666,'pedro@brito.cl',1);
+
+INSERT INTO Clientes VALUES (124,'1','Maria','','Brito','','Su casa #123',7777,'maria@brito.cl',1);
+
+-- Select básico
+SELECT * FROM Clientes;
+SELECT * FROM Comunas;
+
+-- Select Ordenado según columna
+SELECT * FROM Clientes ORDER BY primer_nombre DESC;
+
+SELECT 
+    primer_nombre,
+    apellido_paterno,
+    comuna_id
+FROM Clientes;
+
+
+-- Select simple nivel 2
+SELECT 
+    cl.primer_nombre AS "Nombre",
+    cl.apellido_paterno AS "Apellido", 
+    co.nombre AS "Comuna"
+FROM Clientes cl
+    JOIN Comunas co ON (cl.comuna_id = co.id_comuna);
