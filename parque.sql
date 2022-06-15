@@ -31,13 +31,14 @@ ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id)
 
 -- Ingresar datos a la tabla Comunas
 INSERT INTO Comunas VALUES (1,'Arica', 1)
-INSERT INTO Comunas VALUES (2,'', 2)
-INSERT INTO Comunas VALUES (3,'Arica', 3)
+INSERT INTO Comunas VALUES (2,'Camarones', 1)
+INSERT INTO Comunas VALUES (3,'General Lagos', 1)
+INSERT INTO Comunas VALUES (4,'Putre', 1)
 
 SELECT * FROM Comunas;
 SELECT * FROM Clientes;
 
 -- Ingresar datos a la tabla Clientes
-INSERT INTO Clientes VALUES (123,'K','Alan','','Frito','','Avenida Siempre viva #117' ,555,'alan@brito.cl',1)
-INSERT INTO Clientes VALUES (132,'K','Pedro','','Frito','','Avenida Siempre viva #117' ,666,'pedro@brito.cl',1)
-INSERT INTO Clientes VALUES (123,'K','Maria','','Frito','','Avenida Siempre viva #117' ,777,'maria@brito.cl',1)
+INSERT INTO Clientes VALUES (123,'K','Alan','','Frito','','Avenida Siempre viva #117' ,555,'alan@brito.cl',1);
+INSERT INTO Clientes VALUES (132,'K','Pedro','','Frito','','Avenida Siempre viva #117' ,666,'pedro@brito.cl',1);
+INSERT INTO Clientes VALUES (123,'K','Maria','','Frito','','Avenida Siempre viva #117' ,777,'maria@brito.cl',1);
