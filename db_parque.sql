@@ -1,4 +1,4 @@
--- CLIENTES
+-- 1) CLIENTES
 -- Crear Tabla Clientes
 CREATE TABLE Clientes( 
     rut_cliente         NUMBER(11) NOT NULL, 
@@ -16,8 +16,7 @@ CREATE TABLE Clientes(
 --Añadir la PK a la Tabla Clientes
 ALTER TABLE Clientes ADD CONSTRAINT cliente_PK PRIMARY KEY (rut_cliente);
 
-
--- COMUNAS
+-- 2) COMUNAS
 --Creo Tabla Comunas
 CREATE TABLE Comunas( 
     id_comuna NUMBER NOT NULL, 
@@ -32,8 +31,7 @@ ALTER TABLE Comunas ADD CONSTRAINT comuna_PK PRIMARY KEY (id_comuna);
 ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id) 
     REFERENCES Comunas (id_comuna);
 
-
--- PROVINCIA
+-- 3) PROVINCIA
 -- Crear Tabla Provincias
 CREATE TABLE Provincias( 
     id_provincia         NUMBER NOT NULL, 
@@ -48,7 +46,7 @@ ALTER TABLE Provincias ADD CONSTRAINT provincia_PK PRIMARY KEY (id_provincia);
 ALTER TABLE Comunas ADD CONSTRAINT provincia_FK FOREIGN KEY (provincia_id) 
     REFERENCES Provincias (id_provincia);
 
--- REGION
+-- 4) REGION
 -- Crear Tabla Regiones
 CREATE TABLE Regiones( 
     id_region        NUMBER NOT NULL, 
@@ -62,11 +60,10 @@ ALTER TABLE Regiones ADD CONSTRAINT region_PK PRIMARY KEY (id_region);
 ALTER TABLE Provincias ADD CONSTRAINT provincia_FK FOREIGN KEY (region_id) 
     REFERENCES Regiones (id_region);
 
-
--- SECTOR
+-- 5) SECTOR
 -- Crear Tabla Sector
 CREATE TABLE Sector( 
-    id_sector         NUMBER(11) NOT NULL, 
+    id_sector         NUMBER NOT NULL, 
     nombre       VARCHAR2(250) NOT NULL,
     parque_id         NUMBER NOT NULL, 
 );
@@ -74,8 +71,7 @@ CREATE TABLE Sector(
 -- Añadir la PK a la tabla Sector
 ALTER TABLE Sector ADD CONSTRAINT sector_PK PRIMARY KEY (id_sector);
 
-
--- PARQUE
+-- 6) PARQUE
 -- Crear Tabla Parques
 CREATE TABLE Parques( 
     id_parque         NUMBER NOT NULL, 
