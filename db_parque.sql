@@ -242,15 +242,15 @@ ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id)
 
 
 -- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
-ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (descuento_id) 
+ALTER TABLE Detalle_Servicio ADD CONSTRAINT detalle_servicio_FK FOREIGN KEY (descuento_id) 
     REFERENCES Descuentos (id_descuento);
 
 -- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
-ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (habitacion_id) 
-    REFERENCES Habitaciones (id_habitacion);
+ALTER TABLE Detalle_Servicio ADD CONSTRAINT detalle_servicio_FK FOREIGN KEY (servicio_id) 
+    REFERENCES Servicios (id_habitacion);
 
 -- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
-ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
+ALTER TABLE Detalle_Servicio ADD CONSTRAINT detalle_servicio_FK FOREIGN KEY (parque_id) 
     REFERENCES Parque (id_parque);
 
 -- Añadir la Clave Foranea o FK a la tabla Domo
