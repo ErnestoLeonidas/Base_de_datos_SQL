@@ -118,7 +118,6 @@ ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMAR
 -- Añadir la PK a la tabla Acompañante
 ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (rut_acompanante);
 
-
 -- 10) DESCUENTOS
 -- Crear Tabla Descuentos
 CREATE TABLE Descuentos( 
@@ -172,28 +171,31 @@ CREATE TABLE Habitaciones(
 ALTER TABLE Habitaciones ADD CONSTRAINT Habitaciones_PK PRIMARY KEY (id_habitacion);
 
 
--- 13) HABITACION
--- Crear Tabla Habitaciones
-CREATE TABLE Habitaciones( 
-    id_habitacion        NUMBER NOT NULL,
-    numero               NUMBER NOT NULL,
-    valor_noche          NUMBER NOT NULL,
-    capacidad_max        NUMBER(2) NOT NULL,
+-- 14) DOMOS
+-- Crear Tabla Domos
+CREATE TABLE Domos( 
+    id_habitacion           NUMBER NOT NULL,
+    tiene_minibar           CHAR(1) NOT NULL,
+    tiene_baño_privado      CHAR(1) NOT NULL,
+    tiene_calefaccion       CHAR(1) NOT NULL,
+    cantidad_camas          NUMBER(2) NOT NULL,
 );
-
-
--- 13) HABITACION
--- Crear Tabla Habitaciones
-CREATE TABLE Habitaciones( 
-    id_habitacion        NUMBER NOT NULL,
-    numero               NUMBER NOT NULL,
-    valor_noche          NUMBER NOT NULL,
-    capacidad_max        NUMBER(2) NOT NULL,
-);
-
 
 -- Añadir la PK a la tabla Servicios
-ALTER TABLE Servicios ADD CONSTRAINT servicios_PK PRIMARY KEY (id_servicio);
+ALTER TABLE Domos ADD CONSTRAINT domos_PK PRIMARY KEY (id_habitacion);
+
+-- 15) CABAÑAS
+-- Crear Tabla Cabanas
+CREATE TABLE Cabanas( 
+    id_habitacion           NUMBER NOT NULL,
+    tiene_minibar           CHAR(1) NOT NULL,
+    tiene_baño_privado      CHAR(1) NOT NULL,
+    tiene_calefaccion       CHAR(1) NOT NULL,
+    cantidad_camas          NUMBER(2) NOT NULL,
+);
+
+-- Añadir la PK a la tabla Servicios
+ALTER TABLE Cabanas ADD CONSTRAINT cabanas_PK PRIMARY KEY (id_habitacion);
 
 
 -- TODAS LAS CLAVES FORANEAS o FK
