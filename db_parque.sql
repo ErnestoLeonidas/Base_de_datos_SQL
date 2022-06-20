@@ -10,22 +10,16 @@ CREATE TABLE Clientes(
     direccion           VARCHAR2(250) NOT NULL, 
     fono                NUMBER NOT NULL,  
     correo              VARCHAR2(250) NOT NULL, 
-    comuna_id           NUMBER NOT NULL 
+    comuna_id           NUMBER NOT NULL,
 );
-
---Añadir la PK a la Tabla Clientes
-ALTER TABLE Clientes ADD CONSTRAINT cliente_PK PRIMARY KEY (rut_cliente);
 
 -- 2) COMUNAS
 --Creo Tabla Comunas
 CREATE TABLE Comunas( 
     id_comuna         NUMBER NOT NULL, 
     nombre            VARCHAR2(250) NOT NULL, 
-    provincia_id      NUMBER NOT NULL 
+    provincia_id      NUMBER NOT NULL,
 );
-
--- Añadir la PK a la tabla Comunas
-ALTER TABLE Comunas ADD CONSTRAINT comuna_PK PRIMARY KEY (id_comuna);
 
 -- 3) PROVINCIA
 -- Crear Tabla Provincias
@@ -35,18 +29,12 @@ CREATE TABLE Provincias(
     region_id           NUMBER NOT NULL, 
 );
 
--- Añadir la PK a la tabla Provincia
-ALTER TABLE Provincias ADD CONSTRAINT provincia_PK PRIMARY KEY (id_provincia);
-
 -- 4) REGION
 -- Crear Tabla Regiones
 CREATE TABLE Regiones( 
     id_region         NUMBER NOT NULL, 
     nombre            VARCHAR2(250) NOT NULL,
 );
-
--- Añadir la PK a la tabla Region
-ALTER TABLE Regiones ADD CONSTRAINT region_PK PRIMARY KEY (id_region);
 
 -- 5) SECTOR
 -- Crear Tabla Sector
@@ -56,18 +44,12 @@ CREATE TABLE Sector(
     parque_id         NUMBER NOT NULL, 
 );
 
--- Añadir la PK a la tabla Sector
-ALTER TABLE Sector ADD CONSTRAINT sector_PK PRIMARY KEY (id_sector);
-
 -- 6) PARQUE
 -- Crear Tabla Parques
 CREATE TABLE Parques( 
     id_parque         NUMBER NOT NULL, 
     nombre            VARCHAR2(250) NOT NULL,
 );
-
--- Añadir la PK a la tabla Parque
-ALTER TABLE Parque ADD CONSTRAINT parque_PK PRIMARY KEY (id_parque);
 
 -- 7) ACOMPAÑANTE
 -- Crear Tabla Acompañante
@@ -81,11 +63,8 @@ CREATE TABLE Acompanantes(
     direccion           VARCHAR2(250) NOT NULL, 
     fono                NUMBER NOT NULL,  
     correo              VARCHAR2(250) NOT NULL, 
-    comuna_id           NUMBER NOT NULL 
+    comuna_id           NUMBER NOT NULL,
 );
-
--- Añadir la PK a la tabla Acompañante
-ALTER TABLE Acompanantes ADD CONSTRAINT acompanante_PK PRIMARY KEY (rut_acompanante);
 
 -- 8) RESERVAS
 -- Crear Tabla Reservas
@@ -102,21 +81,12 @@ CREATE TABLE Reservas(
     parque_id           NUMBER NOT NULL,
 );
 
--- Añadir la PK a la tabla Acompañante
-ALTER TABLE Reservas ADD CONSTRAINT reservas_PK PRIMARY KEY (numero_reserva);
-
 -- 9) RESERVA ACOMPAÑANTE
 -- Crear Tabla Reservas_acompanantes
 CREATE TABLE Reservas_acompanantes( 
     numero_reserva      NUMBER NOT NULL,
     rut_acompanante     NUMBER(11) NOT NULL, 
 );
-
--- Añadir la PK a la tabla Reservas_acompanantes
-ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (numero_reserva);
-
--- Añadir la PK a la tabla Reservas_acompanantes
-ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (rut_acompanante);
 
 -- 10) DESCUENTOS
 -- Crear Tabla Descuentos
@@ -128,9 +98,6 @@ CREATE TABLE Descuentos(
     porcentaje_descuento    NUMBER(2),
 );
 
--- Añadir la PK a la tabla Descuentos
-ALTER TABLE Descuentos ADD CONSTRAINT reservas_PK PRIMARY KEY (id_descuento);
-
 -- 11) SERVICIOS
 -- Crear Tabla Servicios
 CREATE TABLE Servicios( 
@@ -140,9 +107,6 @@ CREATE TABLE Servicios(
     descripcion             VARCHAR2(1000),
     valor_persona           NUMBER,
 );
-
--- Añadir la PK a la tabla Servicios
-ALTER TABLE Servicios ADD CONSTRAINT servicios_PK PRIMARY KEY (id_servicio);
 
 -- 12) DETALLE SERVICIO
 -- Crear Tabla Detalle_Servicio
@@ -155,9 +119,6 @@ CREATE TABLE Detalle_Servicio(
     cliente_rut          NUMBER(11) NOT NULL,
 );
 
--- Añadir la PK a la tabla Detalle_Servicio
-ALTER TABLE Detalle_Servicio ADD CONSTRAINT detalle_servicio_PK PRIMARY KEY (id_detalle);
-
 -- 13) HABITACION
 -- Crear Tabla Habitaciones
 CREATE TABLE Habitaciones( 
@@ -166,10 +127,6 @@ CREATE TABLE Habitaciones(
     valor_noche          NUMBER NOT NULL,
     capacidad_max        NUMBER(2) NOT NULL,
 );
-
--- Añadir la PK a la tabla Habitaciones
-ALTER TABLE Habitaciones ADD CONSTRAINT Habitaciones_PK PRIMARY KEY (id_habitacion);
-
 
 -- 14) DOMOS
 -- Crear Tabla Domos
@@ -181,9 +138,6 @@ CREATE TABLE Domos(
     cantidad_camas          NUMBER(2) NOT NULL,
 );
 
--- Añadir la PK a la tabla Servicios
-ALTER TABLE Domos ADD CONSTRAINT domos_PK PRIMARY KEY (id_habitacion);
-
 -- 15) CABAÑAS
 -- Crear Tabla Cabanas
 CREATE TABLE Cabanas( 
@@ -194,9 +148,54 @@ CREATE TABLE Cabanas(
     cantidad_camas          NUMBER(2) NOT NULL,
 );
 
+--Añadir la PK a la Tabla Clientes
+ALTER TABLE Clientes ADD CONSTRAINT cliente_PK PRIMARY KEY (rut_cliente);
+
+-- Añadir la PK a la tabla Comunas
+ALTER TABLE Comunas ADD CONSTRAINT comuna_PK PRIMARY KEY (id_comuna);
+
+-- Añadir la PK a la tabla Provincia
+ALTER TABLE Provincias ADD CONSTRAINT provincia_PK PRIMARY KEY (id_provincia);
+
+-- Añadir la PK a la tabla Region
+ALTER TABLE Regiones ADD CONSTRAINT region_PK PRIMARY KEY (id_region);
+
+-- Añadir la PK a la tabla Sector
+ALTER TABLE Sector ADD CONSTRAINT sector_PK PRIMARY KEY (id_sector);
+
+-- Añadir la PK a la tabla Parque
+ALTER TABLE Parque ADD CONSTRAINT parque_PK PRIMARY KEY (id_parque);
+
+-- Añadir la PK a la tabla Acompañante
+ALTER TABLE Acompanantes ADD CONSTRAINT acompanante_PK PRIMARY KEY (rut_acompanante);
+
+-- Añadir la PK a la tabla Acompañante
+ALTER TABLE Reservas ADD CONSTRAINT reservas_PK PRIMARY KEY (numero_reserva);
+
+-- Añadir la PK a la tabla Reservas_acompanantes
+ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (numero_reserva);
+
+-- Añadir la PK a la tabla Reservas_acompanantes
+ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (rut_acompanante);
+
+-- Añadir la PK a la tabla Descuentos
+ALTER TABLE Descuentos ADD CONSTRAINT reservas_PK PRIMARY KEY (id_descuento);
+
+-- Añadir la PK a la tabla Servicios
+ALTER TABLE Servicios ADD CONSTRAINT servicios_PK PRIMARY KEY (id_servicio);
+
+-- Añadir la PK a la tabla Detalle_Servicio
+ALTER TABLE Detalle_Servicio ADD CONSTRAINT detalle_servicio_PK PRIMARY KEY (id_detalle);
+
+-- Añadir la PK a la tabla Habitaciones
+ALTER TABLE Habitaciones ADD CONSTRAINT Habitaciones_PK PRIMARY KEY (id_habitacion);
+
+
+-- Añadir la PK a la tabla Servicios
+ALTER TABLE Domos ADD CONSTRAINT domos_PK PRIMARY KEY (id_habitacion);
+
 -- Añadir la PK a la tabla Servicios
 ALTER TABLE Cabanas ADD CONSTRAINT cabanas_PK PRIMARY KEY (id_habitacion);
-
 
 -- TODAS LAS CLAVES FORANEAS o FK
 
