@@ -216,10 +216,6 @@ ALTER TABLE Provincias ADD CONSTRAINT provincia_FK FOREIGN KEY (region_id)
 ALTER TABLE Sector ADD CONSTRAINT parque_FK FOREIGN KEY (parque_id) 
     REFERENCES Parques (id_parque);
 
--- PARQUE NO TIENE CLAVES FORANEAS o FK
-
--- ACOMPAÑANTE NO TIENE CLAVES FORANEAS o FK
-
 -- Añadir la Clave Foranea o FK a la tabla Reservas_acompanantes
 ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_FK FOREIGN KEY (numero_reserva) 
     REFERENCES Reservas (numero_reserva);
@@ -241,5 +237,26 @@ ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (habitacion_id)
     REFERENCES Habitaciones (id_habitacion);
 
 -- Añadir la Clave Foranea o FK a la tabla Reservas
+ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
+    REFERENCES Parque (id_parque);
+
+
+-- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
+ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (descuento_id) 
+    REFERENCES Descuentos (id_descuento);
+
+-- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
+ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (habitacion_id) 
+    REFERENCES Habitaciones (id_habitacion);
+
+-- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
+ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
+    REFERENCES Parque (id_parque);
+
+-- Añadir la Clave Foranea o FK a la tabla Domo
+ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
+    REFERENCES Parque (id_parque);
+
+-- Añadir la Clave Foranea o FK a la tabla Cabaña
 ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
     REFERENCES Parque (id_parque);
