@@ -27,10 +27,6 @@ CREATE TABLE Comunas(
 -- Añadir la PK a la tabla Comunas
 ALTER TABLE Comunas ADD CONSTRAINT comuna_PK PRIMARY KEY (id_comuna);
 
--- Añadir la Clave Foranea o FK a la tabla Clientes
-ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id) 
-    REFERENCES Comunas (id_comuna);
-
 -- 3) PROVINCIA
 -- Crear Tabla Provincias
 CREATE TABLE Provincias( 
@@ -42,10 +38,6 @@ CREATE TABLE Provincias(
 -- Añadir la PK a la tabla Provincia
 ALTER TABLE Provincias ADD CONSTRAINT provincia_PK PRIMARY KEY (id_provincia);
 
--- Añadir la Clave Foranea o FK a la tabla Comunas
-ALTER TABLE Comunas ADD CONSTRAINT provincia_FK FOREIGN KEY (provincia_id) 
-    REFERENCES Provincias (id_provincia);
-
 -- 4) REGION
 -- Crear Tabla Regiones
 CREATE TABLE Regiones( 
@@ -55,10 +47,6 @@ CREATE TABLE Regiones(
 
 -- Añadir la PK a la tabla Region
 ALTER TABLE Regiones ADD CONSTRAINT region_PK PRIMARY KEY (id_region);
-
--- Añadir la Clave Foranea o FK a la tabla Provincias
-ALTER TABLE Provincias ADD CONSTRAINT provincia_FK FOREIGN KEY (region_id) 
-    REFERENCES Regiones (id_region);
 
 -- 5) SECTOR
 -- Crear Tabla Sector
@@ -81,10 +69,6 @@ CREATE TABLE Parques(
 -- Añadir la PK a la tabla Parque
 ALTER TABLE Parque ADD CONSTRAINT parque_PK PRIMARY KEY (id_parque);
 
--- Añadir la Clave Foranea o FK a la tabla Sector
-ALTER TABLE Sector ADD CONSTRAINT parque_FK FOREIGN KEY (parque_id) 
-    REFERENCES Parques (id_parque);
-
 -- 7) Acompañante
 -- Crear Tabla Acompañante
 CREATE TABLE Acompanantes( 
@@ -106,7 +90,7 @@ ALTER TABLE Acompanantes ADD CONSTRAINT acompanante_PK PRIMARY KEY (rut_acompana
 -- 8) RESERVAS
 -- Crear Tabla Reservas
 CREATE TABLE Reservas( 
-    numero_reserva      NUMBER(11) NOT NULL,
+    numero_reserva      NUMBER NOT NULL,
     fecha_reserva       DATE NOT NULL,
     cliente_rut         NUMBER(11) NOT NULL,
     check_in            DATE NOT NULL,
@@ -120,3 +104,42 @@ CREATE TABLE Reservas(
 
 -- Añadir la PK a la tabla Acompañante
 ALTER TABLE Reservas ADD CONSTRAINT reservas_PK PRIMARY KEY (numero_reserva);
+
+
+-- 9) Reserva Acompañantes
+-- Crear Tabla Reservas_acompanantes
+CREATE TABLE Reservas_acompanantes( 
+    numero_reserva      NUMBER NOT NULL,
+    rut_acompanante     NUMBER(11) NOT NULL, 
+);
+
+-- Añadir la PK a la tabla Acompañante
+ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (numero_reserva);
+
+-- Añadir la PK a la tabla Acompañante
+ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (rut_acompanante);
+
+
+
+
+
+
+
+
+-- Añadir la Clave Foranea o FK
+
+-- Añadir la Clave Foranea o FK a la tabla Comunas
+ALTER TABLE Comunas ADD CONSTRAINT provincia_FK FOREIGN KEY (provincia_id) 
+    REFERENCES Provincias (id_provincia);
+
+-- Añadir la Clave Foranea o FK a la tabla Provincias
+ALTER TABLE Provincias ADD CONSTRAINT provincia_FK FOREIGN KEY (region_id) 
+    REFERENCES Regiones (id_region);
+
+-- Añadir la Clave Foranea o FK a la tabla Sector
+ALTER TABLE Sector ADD CONSTRAINT parque_FK FOREIGN KEY (parque_id) 
+    REFERENCES Parques (id_parque);
+
+-- Añadir la Clave Foranea o FK a la tabla Clientes
+ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id) 
+    REFERENCES Comunas (id_comuna);
