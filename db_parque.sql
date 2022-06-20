@@ -239,7 +239,6 @@ ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (habitacion_id)
 ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
     REFERENCES Parque (id_parque);
 
-
 -- Añadir la Clave Foranea o FK a la tabla Detalle Servicio
 ALTER TABLE Detalle_Servicio ADD CONSTRAINT detalle_servicio_FK FOREIGN KEY (descuento_id) 
     REFERENCES Descuentos (id_descuento);
