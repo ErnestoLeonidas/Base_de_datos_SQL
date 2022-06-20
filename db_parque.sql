@@ -60,7 +60,7 @@ ALTER TABLE Regiones ADD CONSTRAINT region_PK PRIMARY KEY (id_region);
 
 -- Añadir la Clave Foranea o FK a la tabla Provincias
 ALTER TABLE Provincias ADD CONSTRAINT provincia_FK FOREIGN KEY (region_id) 
-    REFERENCES Provincias (id_region);
+    REFERENCES Regiones (id_region);
 
 
 -- SECTOR
@@ -77,7 +77,7 @@ ALTER TABLE Sector ADD CONSTRAINT sector_PK PRIMARY KEY (id_sector);
 
 -- PARQUE
 -- Crear Tabla Parques
-CREATE TABLE Sector( 
+CREATE TABLE Parques( 
     id_parque         NUMBER NOT NULL, 
     nombre       VARCHAR2(250) NOT NULL,
 );
@@ -86,5 +86,5 @@ CREATE TABLE Sector(
 ALTER TABLE Parque ADD CONSTRAINT parque_PK PRIMARY KEY (id_parque);
 
 -- Añadir la Clave Foranea o FK a la tabla Sector
-ALTER TABLE Sector ADD CONSTRAINT sector_FK FOREIGN KEY (parque_id) 
-    REFERENCES Sector (id_parque);
+ALTER TABLE Sector ADD CONSTRAINT parque_FK FOREIGN KEY (parque_id) 
+    REFERENCES Parques (id_parque);
