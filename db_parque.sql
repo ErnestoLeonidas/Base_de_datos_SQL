@@ -112,10 +112,10 @@ CREATE TABLE Reservas_acompanantes(
     rut_acompanante     NUMBER(11) NOT NULL, 
 );
 
--- Añadir la PK a la tabla Acompañante
+-- Añadir la PK a la tabla Reservas_acompanantes
 ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (numero_reserva);
 
--- Añadir la PK a la tabla Acompañante
+-- Añadir la PK a la tabla Reservas_acompanantes
 ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_acompanantes_PK PRIMARY KEY (rut_acompanante);
 
 -- 10) DESCUENTOS
@@ -200,6 +200,10 @@ ALTER TABLE Cabanas ADD CONSTRAINT cabanas_PK PRIMARY KEY (id_habitacion);
 
 -- TODAS LAS CLAVES FORANEAS o FK
 
+-- Añadir la Clave Foranea o FK a la tabla Clientes
+ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id) 
+    REFERENCES Comunas (id_comuna);
+
 -- Añadir la Clave Foranea o FK a la tabla Comunas
 ALTER TABLE Comunas ADD CONSTRAINT provincia_FK FOREIGN KEY (provincia_id) 
     REFERENCES Provincias (id_provincia);
@@ -212,14 +216,30 @@ ALTER TABLE Provincias ADD CONSTRAINT provincia_FK FOREIGN KEY (region_id)
 ALTER TABLE Sector ADD CONSTRAINT parque_FK FOREIGN KEY (parque_id) 
     REFERENCES Parques (id_parque);
 
--- Añadir la Clave Foranea o FK a la tabla Clientes
-ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (comuna_id) 
-    REFERENCES Comunas (id_comuna);
+-- PARQUE NO TIENE CLAVES FORANEAS o FK
 
--- Añadir la Clave Foranea o FK a la tabla Clientes
-ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (numero_reserva) 
-    REFERENCES Comunas (id_comuna);
+-- ACOMPAÑANTE NO TIENE CLAVES FORANEAS o FK
 
--- Añadir la Clave Foranea o FK a la tabla Clientes
-ALTER TABLE Clientes ADD CONSTRAINT comuna_FK FOREIGN KEY (rut_acompanante) 
-    REFERENCES Comunas (id_comuna);
+-- Añadir la Clave Foranea o FK a la tabla Reservas_acompanantes
+ALTER TABLE Reservas_acompanantes ADD CONSTRAINT reservas_FK FOREIGN KEY (numero_reserva) 
+    REFERENCES Reservas (numero_reserva);
+
+-- Añadir la Clave Foranea o FK a la tabla Reservas_acompanantes
+ALTER TABLE Reservas_acompanantes ADD CONSTRAINT acompanantes_FK FOREIGN KEY (rut_acompanante) 
+    REFERENCES acompanantes (rut_acompanante);
+
+-- Añadir la Clave Foranea o FK a la tabla Reservas
+ALTER TABLE Reservas ADD CONSTRAINT cliente_FK FOREIGN KEY (rut_cliente) 
+    REFERENCES Clientes (rut_cliente);
+
+-- Añadir la Clave Foranea o FK a la tabla Reservas
+ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (descuento_id) 
+    REFERENCES Descuentos (id_descuento);
+
+-- Añadir la Clave Foranea o FK a la tabla Reservas
+ALTER TABLE Reservas ADD CONSTRAINT reservas_FK FOREIGN KEY (habitacion_id) 
+    REFERENCES Habitaciones (id_habitacion);
+
+-- Añadir la Clave Foranea o FK a la tabla Reservas
+ALTER TABLE Reservas ADD CONSTRAINT acompanantes_FK FOREIGN KEY (parque_id) 
+    REFERENCES Parque (id_parque);
