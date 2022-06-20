@@ -60,3 +60,11 @@ SELECT
     co.nombre AS "Comuna"
 FROM Clientes cl
     JOIN Comunas co ON (cl.comuna_id = co.id_comuna);
+
+--Creo Tabla Comunas
+CREATE TABLE Comunas( 
+    id_comuna NUMBER NOT NULL, 
+    nombre VARCHAR2(250) NOT NULL, 
+    provincia_id NUMBER NOT NULL 
+);
+
